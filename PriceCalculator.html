@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Price Calculator</title>
+</head>
+<body>
+    <!-- 1. Discount Calculator (Default Parameters)
+    Create a simple price calculator that optionally includes tax. If no tax is provided, a default
+    value should be used.
+    • Input: Product price
+    • Optional: Tax (default 5%)
+    • Output: Final price after tax
+    • Concept: Default parameters, return statement -->
+    <div>
+        <h2>Price Calculator</h2>
+        <button onclick="displayFinalPrice()">Calculate</button>
+        <p id="result"></p>
+    </div>
+
+    <script>
+        function calculatePrice(price,tax=5){
+            return parseInt(price)+(price*tax*0.01);
+        }
+
+        function displayFinalPrice(){
+            let price=prompt("Enter the total price");
+            let tax=prompt("Enter tax percentage(Eg: 10)");
+
+            let result= tax>5?calculatePrice(price,tax):calculatePrice(price);
+            document.getElementById("result").innerText=`Total price after taxed is ${result}`;
+        }
+    </script>
+</body>
+</html>
