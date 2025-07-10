@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Clock</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="bg-gray-500">
+    <!-- 2. Live Clock
+    Display a digital clock that updates every second, showing the current system time.
+    • Show system time in real-time
+    • Update every second
+    • Concept: Function Expression, setInterval, return -->
+    <div class="text-white text-3xl flex min-h-screen justify-center items-center" id="liveClock"></div>
+    <script>
+        function displayTime(){
+            setInterval(()=>{
+                let now = new Date().toLocaleTimeString();
+                document.getElementById("liveClock").innerText=now;
+            },1000)
+        }
+        displayTime();
+    </script>
+</body>
+</html>
