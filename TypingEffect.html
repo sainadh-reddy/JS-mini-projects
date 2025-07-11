@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typing Effect</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="bg-gray-100 flex min-h-screen justify-center items-center">
+    <!-- 9. Typing Animation (Callback)
+    Simulate typing effect by showing one character at a time. After the whole message is
+    shown, trigger a final message.
+    • Show message letter by letter
+    • Call final callback after message completes
+    • Concept: Callback function, setTimeout -->
+    <pre class="text-2xl border-2 p-2 rounded-2xl border-blue-500" id="displayMessage"></pre>
+    <script>
+        let message = "Hi! This is Sainadh";
+        let display=null;
+        let i=0;
+
+        function fullMessage(){
+            document.getElementById("displayMessage").innerText=message;
+            document.getElementById("displayMessage").style.color="Red"
+        };
+
+        function displayMessage(callback){
+            display = setInterval(()=>{
+                if (i < message.length) {
+                    document.getElementById("displayMessage").innerText += message.charAt(i);
+                    i++;
+                }else{
+                    clearInterval(display);
+                    setTimeout(()=>{
+                        callback();
+                    },1000)
+                }
+            },500);
+        };
+
+        displayMessage(fullMessage);
+    </script>
+</body>
+</html>
