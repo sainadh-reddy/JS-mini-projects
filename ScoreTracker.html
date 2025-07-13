@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Score Tracker</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+
+    <div class="bg-white p-6 rounded-lg shadow-md w-full max-w-2xl">
+        <h2 class="text-2xl font-bold mb-6 text-center text-blue-600">Quiz Score Tracker</h2>
+
+        <form id="quizForm">
+            <div class="question mb-4">
+                <p class="font-semibold mb-2">1. What is Square root of 196?</p>
+                <label class="block"><input type="radio" name="q1" value="A" class="mr-2"> A. 14</label>
+                <label class="block"><input type="radio" name="q1" value="B" class="mr-2"> B. 16</label>
+                <label class="block"><input type="radio" name="q1" value="C" class="mr-2"> C. 13</label>
+            </div>
+
+            <div class="question mb-4">
+                <p class="font-semibold mb-2">2. 2 + 2 equals?</p>
+                <label class="block"><input type="radio" name="q2" value="A" class="mr-2"> A. 3</label>
+                <label class="block"><input type="radio" name="q2" value="B" class="mr-2"> B. 4</label>
+                <label class="block"><input type="radio" name="q2" value="C" class="mr-2"> C. 5</label>
+            </div>
+
+            <div class="question mb-6">
+                <p class="font-semibold mb-2">3. Which language is used for web development?</p>
+                <label class="block"><input type="radio" name="q3" value="A" class="mr-2"> A. JavaScript</label>
+                <label class="block"><input type="radio" name="q3" value="B" class="mr-2"> B. Python</label>
+                <label class="block"><input type="radio" name="q3" value="C" class="mr-2"> C. C++</label>
+            </div>
+
+            <button type="button" onclick="submitQuiz()"
+                class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded">
+                Submit
+            </button>
+        </form>
+
+        <div class="result mt-6 text-center">
+            <h1 id="result" class="text-3xl font-bold text-green-600">0</h1>
+        </div>
+    </div>
+
+    <script>
+        function selected(q, userAns) {
+            for (let i = 0; i < q.length; i++) {
+                if (q[i].checked) {
+                    userAns.push(q[i].value);
+                    return;
+                }
+            }
+            userAns.push(null);
+        }
+
+        function calculateScore(userAns, ans) {
+            let score = 0;
+            for (let i = 0; i < ans.length; i++) {
+                if (userAns[i] === ans[i]) score += 10;
+            }
+            return score;
+        }
+
+        function submitQuiz() {
+            let q1 = document.getElementsByName("q1");
+            let q2 = document.getElementsByName("q2");
+            let q3 = document.getElementsByName("q3");
+            const ans = ['A', 'B', 'A'];
+            let quesNames = [q1, q2, q3];
+            let userAns = [];
+            for (let i = 0; i < quesNames.length; i++) {
+                selected(quesNames[i], userAns);
+            }
+            let result = calculateScore(userAns, ans);
+            document.getElementById("result").innerText = result;
+        }
+    </script>
+</body>
+
+</html>
